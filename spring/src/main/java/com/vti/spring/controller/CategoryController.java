@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/category")
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/api/v1/category")
 public class CategoryController {
 
     // Call layer service
@@ -47,7 +48,7 @@ public class CategoryController {
     // update
     // url: localhost:8080/api/v1/category/:id, type put
     // ex url: localhost:8080/api/v1/category/1 sẽ update categoryId = 1
-    @PutMapping
+    @PutMapping("/{id}")
     public int updateCategory(@PathVariable(name = "id") int categoryId,
                                @RequestBody Category category) {
         return categoryService.updateCategory(category, categoryId);
@@ -55,7 +56,7 @@ public class CategoryController {
 
     // delete
     // url: localhost:8080/api/v1/category/:id, type delete
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public int deleteCategory(@PathVariable(name = "id") int categoryId) {
         return categoryService.deleteCategoryById(categoryId);
     }
